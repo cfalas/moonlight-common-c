@@ -69,7 +69,7 @@ typedef struct _STREAM_CONFIGURATION {
     // Specifies the channel configuration of the audio stream.
     // See AUDIO_CONFIGURATION constants and MAKE_AUDIO_CONFIGURATION() below.
     int audioConfiguration;
-    
+
     // Specifies the mask of supported video formats.
     // See VIDEO_FORMAT constants below.
     int supportedVideoFormats;
@@ -512,10 +512,10 @@ void LiInitializeConnectionCallbacks(PCONNECTION_LISTENER_CALLBACKS clCallbacks)
 typedef struct _SERVER_INFORMATION {
     // Server host name or IP address in text form
     const char* address;
-    
+
     // Text inside 'appversion' tag in /serverinfo
     const char* serverInfoAppVersion;
-    
+
     // Text inside 'GfeVersion' tag in /serverinfo (if present)
     const char* serverInfoGfeVersion;
 
@@ -668,6 +668,16 @@ int LiSendPenEvent(uint8_t eventType, uint8_t toolType, uint8_t penButtons,
                    float x, float y, float pressureOrDistance,
                    float contactAreaMajor, float contactAreaMinor,
                    uint16_t rotation, uint8_t tilt);
+
+#define LI_TRACKPAD_EVENT_DOWN        0x00
+#define LI_TRACKPAD_EVENT_UP          0x01
+#define LI_TRACKPAD_EVENT_MOVE        0x02
+#define LI_TRACKPAD_EVENT_CANCEL      0x03
+#define LI_TRACKPAD_EVENT_BUTTON_ONLY 0x04
+#define LI_TRACKPAD_EVENT_CANCEL_ALL  0x05
+#define LI_ROT_UNKNOWN 0xFFFF
+int LiSendTrackpadEvent(uint8_t eventType, uint32_t pointerId, float x, float y, float pressureOrDistance,
+                        float contactAreaMajor, float contactAreaMinor, uint16_t rotation);
 
 // This function queues a mouse button event to be sent to the remote server.
 #define BUTTON_ACTION_PRESS 0x07
@@ -875,7 +885,7 @@ int LiGetPendingAudioDuration(void);
 unsigned int LiGetPortFlagsFromStage(int stage);
 unsigned int LiGetPortFlagsFromTerminationErrorCode(int errorCode);
 
-// Returns the IPPROTO_* value for the specified port index 
+// Returns the IPPROTO_* value for the specified port index
 int LiGetProtocolFromPortFlagIndex(int portFlagIndex);
 
 // Returns the port number for the specified port index
@@ -955,6 +965,7 @@ void LiRequestIdrFrame(void);
 // This function returns any extended feature flags supported by the host.
 #define LI_FF_PEN_TOUCH_EVENTS        0x01 // LiSendTouchEvent()/LiSendPenEvent() supported
 #define LI_FF_CONTROLLER_TOUCH_EVENTS 0x02 // LiSendControllerTouchEvent() supported
+#define LI_FF_TRACKPAD_EVENTS         0x04 // LiSendTrackpadEvent() supported for trackpads
 uint32_t LiGetHostFeatureFlags(void);
 
 #ifdef __cplusplus
