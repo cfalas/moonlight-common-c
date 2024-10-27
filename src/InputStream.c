@@ -1328,8 +1328,8 @@ int LiSendTrackpadEvent(uint8_t eventType, uint32_t pointerId, float x, float y,
     // state changing events like up/down/leave events to be dropped.
     holder->enetPacketFlags = TRACKPAD_EVENT_IS_BATCHABLE(eventType) ? 0 : ENET_PACKET_FLAG_RELIABLE;
 
-    holder->packet.trackpad.header.size = BE32(sizeof(SS_TOUCH_PACKET) - sizeof(uint32_t));
-    holder->packet.trackpad.header.magic = LE32(SS_TOUCH_MAGIC);
+    holder->packet.trackpad.header.size = BE32(sizeof(SS_TRACKPAD_PACKET) - sizeof(uint32_t));
+    holder->packet.trackpad.header.magic = LE32(SS_TRACKPAD_MAGIC);
     holder->packet.trackpad.eventType = eventType;
     holder->packet.trackpad.pointerId = LE32(pointerId);
     holder->packet.trackpad.rotation = LE16(rotation);
