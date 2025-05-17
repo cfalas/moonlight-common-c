@@ -677,12 +677,12 @@ int LiSendPenEvent(uint8_t eventType, uint8_t toolType, uint8_t penButtons,
                    float contactAreaMajor, float contactAreaMinor,
                    uint16_t rotation, uint8_t tilt);
 
-#define LI_TRACKPAD_EVENT_DOWN        0x00
-#define LI_TRACKPAD_EVENT_UP          0x01
-#define LI_TRACKPAD_EVENT_MOVE        0x02
-#define LI_TRACKPAD_EVENT_CANCEL      0x03
-#define LI_TRACKPAD_EVENT_BUTTON_ONLY 0x04
-#define LI_TRACKPAD_EVENT_CANCEL_ALL  0x05
+#define LI_TRACKPAD_EVENT_FINGER_DOWN   0x00
+#define LI_TRACKPAD_EVENT_FINGER_UP     0x01
+#define LI_TRACKPAD_EVENT_FINGER_MOVE   0x02
+#define LI_TRACKPAD_EVENT_BUTTON_DOWN   0x03
+#define LI_TRACKPAD_EVENT_BUTTON_UP     0x04
+#define LI_TRACKPAD_EVENT_CANCEL_ALL    0x05
 #define LI_ROT_UNKNOWN 0xFFFF
 int LiSendTrackpadEvent(uint8_t eventType, uint32_t pointerId, float x, float y, float pressureOrDistance,
                         float contactAreaMajor, float contactAreaMinor, uint16_t rotation);

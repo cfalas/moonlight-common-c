@@ -61,7 +61,7 @@ static struct {
 
 // Don't batch up/down/cancel events
 #define TOUCH_EVENT_IS_BATCHABLE(x) ((x) == LI_TOUCH_EVENT_HOVER || (x) == LI_TOUCH_EVENT_MOVE)
-#define TRACKPAD_EVENT_IS_BATCHABLE(x) ((x) == LI_TRACKPAD_EVENT_MOVE)
+#define TRACKPAD_EVENT_IS_BATCHABLE(x) ((x) == LI_TRACKPAD_EVENT_FINGER_MOVE)
 
 // Contains input stream packets
 typedef struct _PACKET_HOLDER {
